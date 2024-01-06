@@ -1,5 +1,6 @@
 package com.security.adarsh.config;
 
+import com.security.adarsh.customBean.CustomUserDetailsBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,8 +25,14 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // using in-memory for user authentication
+    // Defining a custom userDetailsServiceBean
     @Bean
+    CustomUserDetailsBean userDetailsBean(){
+        return new CustomUserDetailsBean();
+    }
+
+    // using in-memory for user authentication
+   /* @Bean
     public UserDetailsService users() {
         UserDetails user = User.builder()
                 .username("user")
@@ -38,7 +45,7 @@ public class SecurityConfig {
                 .roles("USER", "ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(user, admin);
-    }
+    }*/
 
 
 
